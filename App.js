@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+import React from "react";
+import { View } from "react-native";
+import UserLoginScreen from "./App/Screens/auth/UserLoginScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ShopTab from "./App/ShopTab";
+const App = () => {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: "purple" },
+          headerTintColor: "white",
+        }}
+      >
+        <Stack.Screen
+          name="ShopTab"
+          component={ShopTab}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserLogin"
+          component={UserLoginScreen}
+          options={{ title: "User Login" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
+export default App;
