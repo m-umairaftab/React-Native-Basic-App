@@ -6,38 +6,32 @@ import { useState } from "react";
 import { styles, toastConfig } from "../../styles";
 import { Button } from "react-native";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
-import { useNavigation } from "@react-navigation/native";
-
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-const UserLoginScreen = () => {
-  const navigation = useNavigation();
+const SendEmailResetLoginScreen = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const clearTextInput = () => {
     setEmail("");
-    setPassword("");
   };
   const handleFormSubmit = () => {
-    if (email && password) {
-      // console.log("Login Succcess");
-      const formData = { email, password };
+    if (email) {
+      // console.log("Email Succcess");
+      const formData = { email };
       // console.log(formData);
       clearTextInput();
       Toast.show({
         type: "done",
         position: "top",
         topOffset: 0,
-        text1: "Login Succcess",
+        text1: "Email send succcessfully.Please check your email.",
       });
-      navigation.navigate("UserPanel");
     } else {
-      // console.log("All fields are required");
+      // console.log("Email is required");
       Toast.show({
         type: "warning",
         position: "top",
         topOffset: 0,
-        text1: "All fields are required",
+        text1: "Email is required",
       });
     }
   };
@@ -62,41 +56,8 @@ const UserLoginScreen = () => {
               keyboardType="email-address"
             />
           </View>
-          <View>
-            <Text style={styles.labelText}>Password</Text>
-            <TextInput
-              style={styles.input}
-              value={password}
-              onChangeText={setPassword}
-              placeholder="Write Your Password"
-              // onPress={console.log(password)}
-              secureTextEntry={true}
-            />
-          </View>
           <View style={styles.loginButton}>
             <Button title="Login" onPress={handleFormSubmit} color="purple" />
-          </View>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <View>
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  navigation.navigate("SendPasswordResetEmail");
-                }}
-              >
-                <Text style={{ fontWeight: "bold" }}>Forgot Password?</Text>
-              </TouchableWithoutFeedback>
-            </View>
-            <View>
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  navigation.navigate("Registeration");
-                }}
-              >
-                <Text style={{ fontWeight: "bold" }}>New User?Register</Text>
-              </TouchableWithoutFeedback>
-            </View>
           </View>
         </View>
       </ScrollView>
@@ -104,4 +65,4 @@ const UserLoginScreen = () => {
   );
 };
 
-export default UserLoginScreen;
+export default SendEmailResetLoginScreen;
