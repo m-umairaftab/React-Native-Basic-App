@@ -1,6 +1,5 @@
 import React from "react";
-// import Main from "./App/Main";
-import Main from "./Web-View/Main";
+import Main from "./src/EcomerenceApp/Main";
 const App = () => {
   return <Main />;
 };
